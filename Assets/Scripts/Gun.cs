@@ -9,13 +9,19 @@ public class Gun : MonoBehaviour, IWeapon {
     private Rigidbody bullet;
 
     [SerializeField]
-    private float velocity;
+    private float force;
 
     private int ammo;
 
     private void Start()
     {
         Reload();
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Reload"))
+            Reload();
     }
 
     public void Shoot()
@@ -27,7 +33,7 @@ public class Gun : MonoBehaviour, IWeapon {
         }
     }
 
-    public void Reload()
+    private void Reload()
     {
         ammo = capacity;
     }
@@ -35,6 +41,6 @@ public class Gun : MonoBehaviour, IWeapon {
     private void SpawnBullet()
     {
         Rigidbody shot = (Rigidbody)Instantiate(bullet, transform.position, transform.rotation);
-        shot.AddForce(transform.forward * velocity);
+        shot.velocity = transform.forward * force;
     }
 }

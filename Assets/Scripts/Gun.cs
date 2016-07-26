@@ -5,6 +5,12 @@ public class Gun : MonoBehaviour, IWeapon {
     [SerializeField]
     private int capacity = 10;
 
+    [SerializeField]
+    private Rigidbody bullet;
+
+    [SerializeField]
+    private float velocity;
+
     private int ammo;
 
     private void Start()
@@ -28,6 +34,7 @@ public class Gun : MonoBehaviour, IWeapon {
 
     private void SpawnBullet()
     {
-        Debug.Log("Shooting");
+        Rigidbody shot = (Rigidbody)Instantiate(bullet, transform.position, transform.rotation);
+        shot.AddForce(transform.forward * velocity);
     }
 }

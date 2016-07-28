@@ -24,7 +24,7 @@ public class Gun : MonoBehaviour, IWeapon {
             Reload();
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         if (ammo > 0)
         {
@@ -40,7 +40,7 @@ public class Gun : MonoBehaviour, IWeapon {
 
     private void SpawnBullet()
     {
-        Rigidbody shot = (Rigidbody)Instantiate(bullet, transform.position, transform.rotation);
+        Rigidbody shot = (Rigidbody)Instantiate(bullet, transform.position + transform.forward * 1f, transform.rotation);
         shot.velocity = transform.forward * force;
     }
 }

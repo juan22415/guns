@@ -19,9 +19,15 @@ public class Character : MonoBehaviour {
             ChangeWeapon();
     }
 
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(transform.position, transform.forward);
+    }
+
     private void ChangeWeapon(int selected)
     {
         current = selected;
+        Debug.Log("Changed weapon" + selected);
     }
 
     private void ChangeWeapon()

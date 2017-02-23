@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class Character : MonoBehaviour {
+    
     private IWeapon[] weapons;
     private int current = 0;
 

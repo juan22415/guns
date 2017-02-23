@@ -33,6 +33,16 @@ public class Gun : MonoBehaviour, IWeapon {
         }
     }
 
+    public virtual void Shoot(int direction)
+    {
+        if (ammo > 0)
+        {
+            ammo--;
+            SpawnBullet(direction);
+
+        }
+    }
+
     private void Reload()
     {
         ammo = capacity;
@@ -42,5 +52,11 @@ public class Gun : MonoBehaviour, IWeapon {
     {
         Rigidbody shot = (Rigidbody)Instantiate(bullet, transform.position + transform.forward * 1f, transform.rotation);
         shot.velocity = transform.forward * force;
+    }
+
+    private void SpawnBullet(int direction)
+        {
+        Rigidbody shot = (Rigidbody)Instantiate(bullet, transform.position + transform.forward * 1f*direction, transform.rotation);
+        shot.velocity = transform.forward * force*direction;
     }
 }
